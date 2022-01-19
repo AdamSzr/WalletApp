@@ -5,8 +5,41 @@ import WindowWithMenu from "app/core/components/MenuNav"
 import { Box, Button, FormControl, Input, Text } from "@chakra-ui/react"
 import { CenterRect } from "app/core/components/CenterRect"
 import { Textarea } from "@chakra-ui/react"
+import { useState } from "react"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
-const ProductForm = () => {
+type ProductFormProps = {
+  onSubmitCb: ({ name, price, desc, userId }) => void
+}
+const ProductForm = (props: ProductFormProps) => {
+  const [name, setName] = useState("")
+  const [desc, setDesc] = useState("")
+  const [price, setPrice] = useState(0.0)
+
+  const [createProductMutation] = useMutation(createProduct)
+  const currentUser = useCurrentUser()
+
+  function handleNameChange(e) {
+    setName(e.target.value)
+  }
+  function handleDescChange(e) {
+    setDesc(e.target.value)
+  }
+  function handlePriceChange(e) {
+    setPrice(Number(e.target.value))
+  }
+
+  async function onSubmit(e) {
+    e.preventDefault()
+    const product = await createProductMutation({
+      name: name,
+      price: price,
+      userId: currentUser?.id as any,
+      description: desc,
+    })
+    console.log({ product })
+  }
+
   return (
     <CenterRect>
       <Text
@@ -18,12 +51,28 @@ const ProductForm = () => {
       >
         Stworz nowy produkt
       </Text>
-      <form id="LoginForm">
+      <form id="LoginForm" onSubmit={onSubmit}>
         <FormControl id="LoginFormInputContainer">
           <Box>
-            <Input placeholder="nazwa produktu" type="text" className="TextColorBlack" />
-            <Input placeholder="cena" type="number" className="TextColorBlack" step={0.01} />
-            <Textarea placeholder="opis" type="textbox" className="TextColorBlack" />
+            <Input
+              placeholder="nazwa produktu"
+              type="text"
+              className="TextColorBlack"
+              onChange={handleNameChange}
+            />
+            <Input
+              placeholder="cena"
+              type="number"
+              className="TextColorBlack"
+              step={0.01}
+              onChange={handlePriceChange}
+            />
+            <Textarea
+              placeholder="opis"
+              type="textbox"
+              className="TextColorBlack"
+              onChange={handleDescChange}
+            />
             <Box>
               <Button type="submit" colorScheme="blue" className="TextColorBlack">
                 Dodaj Produkt

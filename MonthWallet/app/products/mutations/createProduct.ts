@@ -1,9 +1,12 @@
 import { resolver } from "blitz"
 import db from "db"
-import { z } from "zod"
+import { number, z } from "zod"
 
 const CreateProduct = z.object({
   name: z.string(),
+  description: z.string(),
+  price: z.number(),
+  userId: z.number(),
 })
 
 export default resolver.pipe(resolver.zod(CreateProduct), resolver.authorize(), async (input) => {

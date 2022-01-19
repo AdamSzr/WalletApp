@@ -9,7 +9,6 @@ import ProductForm from "app/core/components/ProductForm"
 
 const NewProductPage: BlitzPage = () => {
   const router = useRouter()
-  const [createProductMutation] = useMutation(createProduct)
 
   return (
     <WindowWithMenu>

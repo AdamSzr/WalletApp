@@ -96,5 +96,5 @@ model Basket {
   totalPrice  Decimal
   User        User?             @relation(fields: [userId], references: [id])
   userId      Int?
-  baskets     BasketOnProduct[]
+  products    BasketOnProduct[]
 }
