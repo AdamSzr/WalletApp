@@ -1,42 +1,10 @@
-#FullScreen {
+@import url("./authForms.css");
+@import url("./menuNav.css");
+@import url("./menuContentSection.css");
+@import url("./productTable.css");
+
+.FullScreen {
   background-color: #e5e5e5;
   min-height: 100vh;
   width: 100vw;
-  max-width: 100vw;
-}
-
-#CenterFlex,
-#CenterOutline {
-  height: 100vh;
-}
-
-#LoginFormInputContainer {
-  margin-bottom: 5vh;
-}
-
-#LoginForm,
-#SignUpForm {
-  max-width: 15vw;
-  text-align: center;
-}
-#CenterRectContent {
-  border: 1px solid black;
-  padding-right: 4vw;
-  padding-left: 4vw;
-  padding-top: 4vh;
-  padding-bottom: 4vh;
-  background-color: #856a6a;
-}
-
-.TextColorBlack {
-  color: black !important;
-}
-
-input.TextColorBlack {
-  background-color: #e5e5e5;
-}
-
-.TextColorBlack::placeholder {
-  color: black;
-  background-color: #e5e5e5;
 }

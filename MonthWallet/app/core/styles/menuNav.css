@@ -1,0 +1,25 @@
+#MenuNav {
+  background-color: rgb(146, 119, 119);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 2vh;
+}
+
+.ContentPadding {
+  padding: 14px;
+}
+
+.MenuItem {
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  height: 10vh;
+  min-width: 15vw;
+  border-radius: 10px;
+}
+
+#MenuNavChildren {
+  background-color: #bb929a;
+  height: 88vh;
+  padding: 13px;
+  border-radius: 10px;
+}

@@ -4,7 +4,7 @@ import { Login } from "app/auth/validations"
 import { Box } from "@chakra-ui/react"
 
 export const FullScreen = (props) => {
-  return <Box id="FullScreen">{props.children}</Box>
+  return <Box className="FullScreen">{props.children}</Box>
 }
 
 export default FullScreen

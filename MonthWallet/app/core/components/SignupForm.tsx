@@ -6,23 +6,35 @@ import { CenterRect } from "app/core/components/CenterRect"
 import { useState } from "react"
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText } from "@chakra-ui/react"
 
-export const SignupForm = (props) => {
+type SignUpProps = {
+  onSuccess: Action
+}
+type Action = (user: object) => void
+
+export const SignupForm = (props: SignUpProps) => {
   const [signupMutation] = useMutation(signup)
 
-  const onSubmitFunc = async (e) => {
-    e.preventDefault()
-    console.log("Submited ")
-  }
-
-  function handleEmailChange(e) {
-    console.log("EmailChanged")
-  }
-  function handlePasswChange(e) {
-    console.log("PasswdChanged")
-  }
   const [email, setEmail] = useState("")
   const [passw, setPassw] = useState("")
 
+  const onSubmitFunc = async (e) => {
+    console.log({ email, passw })
+    e.preventDefault()
+    const user = await signupMutation({ email, password: passw })
+    console.log({ user })
+    props.onSuccess(user)
+  }
+
+  function handleEmailChange(e) {
+    console.log(e.target.value)
+    setEmail(() => e.target.value)
+    console.log("EmailChanged")
+  }
+  function handlePasswChange(e) {
+    console.log(e.target.value)
+    setPassw(() => e.target.value)
+    console.log("PasswdChanged")
+  }
   return (
     <CenterRect>
       <form onSubmit={onSubmitFunc} id="SignUpForm">

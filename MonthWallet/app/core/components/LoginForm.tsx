@@ -12,28 +12,30 @@ type LoginFormProps = {
 
 export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login)
+  const [email, setEmail] = useState("")
+  const [passw, setPassw] = useState("")
 
   const onSubmitFunc = async (e) => {
     e.preventDefault()
     console.log("Submited ")
-    // try {
-    //   const user = await loginMutation(values)
-    //   props.onSuccess?.(user)
-    // } catch (error: any) {
-    //   if (error instanceof AuthenticationError) {
-    //     console.error(error.message)
-    //   }
-    // }
+    try {
+      const user = await loginMutation({ email: email, password: passw })
+      if (user) props.onSuccess?.(user)
+    } catch (error: any) {
+      if (error instanceof AuthenticationError) {
+        console.error(error.message)
+      }
+    }
   }
 
   function handleEmailChange(e) {
+    setEmail(() => e.target.value)
     console.log("EmailChanged")
   }
   function handlePasswChange(e) {
+    setPassw(() => e.target.value)
     console.log("PasswdChanged")
   }
-  const [email, setEmail] = useState("")
-  const [passw, setPassw] = useState("")
 
   return (
     <CenterRect>
