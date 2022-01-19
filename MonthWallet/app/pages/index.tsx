@@ -6,6 +6,8 @@ import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
 import { Box } from "@chakra-ui/react"
 import { CenterRect } from "app/core/components/CenterRect"
+import LoginForm from "app/core/components/LoginForm"
+import SignupForm from "app/core/components/SignupForm"
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -17,7 +19,7 @@ const HomeUI = (props) => {
   const [logoutMutation] = useMutation(logout)
 
   if (!currentUser) {
-    return <CenterRect>rect</CenterRect>
+    return <>not auth</>
   } else {
     return <>login</>
   }
@@ -28,6 +30,7 @@ const Home: BlitzPage = () => {
 }
 
 Home.suppressFirstRenderFlicker = true
+Home.authenticate = true
 Home.getLayout = (page) => <Layout title="Home">{page}</Layout>
 
 export default Home

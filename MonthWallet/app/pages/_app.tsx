@@ -7,12 +7,12 @@ import {
   ErrorFallbackProps,
   useQueryErrorResetBoundary,
 } from "blitz"
-import LoginForm from "app/auth/components/LoginForm"
 
 import { ChakraProvider } from "@chakra-ui/react"
 import FullScreen from "app/core/components/FullScreen"
 import { Suspense } from "react"
 import "app/core/styles/style.css"
+import LoginForm from "app/core/components/LoginForm"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
