@@ -17,9 +17,6 @@ import { List, ListItem, ListIcon, OrderedList, UnorderedList } from "@chakra-ui
  */
 
 const AppDescription = (props) => {
-  const currentUser = useCurrentUser()
-  const [logoutMutation] = useMutation(logout)
-
   return (
     <Box id="AppDescriptionContainer">
       <Text fontSize={"3xl"} id="AppDescriptionContainerHeader">
@@ -76,6 +73,7 @@ const Home: BlitzPage = () => {
 }
 
 Home.suppressFirstRenderFlicker = true
+Home.authenticate = true
 Home.getLayout = (page) => <Layout title="Home">{page}</Layout>
 
 export default Home

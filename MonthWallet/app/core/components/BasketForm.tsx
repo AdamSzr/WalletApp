@@ -11,22 +11,21 @@ import { RandomInt } from "../utils/base"
 
 type BasketFormProps = {
   products: Product[]
-}
-
-type Order = {
-  productId: number
-  count: number
+  onClickCreate: (
+    name: string,
+    selectedProductsIds: number[],
+    description: string,
+    totalPrice: number
+  ) => void
 }
 
 const BasketForm = (props: BasketFormProps) => {
   const [name, setName] = useState("")
   const [selectedProducts, seteSelProd] = useState([] as Product[])
   const [description, setDescription] = useState("")
+  const [totalPrice, setTotalPrice] = useState(0)
 
   const products = props.products
-
-  console.log({ prods: props.products })
-
   return (
     <CenterRect>
       <Text
@@ -38,7 +37,17 @@ const BasketForm = (props: BasketFormProps) => {
       >
         Stworz koszyk
       </Text>
-      <form id="LoginForm" onSubmit={() => console.log({ name, selectedProducts, description })}>
+      <form
+        id="LoginForm"
+        onSubmit={() =>
+          props.onClickCreate(
+            name,
+            selectedProducts.map((i) => i.id),
+            description,
+            totalPrice
+          )
+        }
+      >
         <FormControl id="LoginFormInputContainer">
           <Box>
             <Input
@@ -50,13 +59,10 @@ const BasketForm = (props: BasketFormProps) => {
             <Select
               placeholder="Select option"
               onChange={(e) => {
-                const data = {
-                  item: e.target.value,
-                  index: products.find((p, idx) => p.name == e.target.value),
-                }
-                seteSelProd((acc) => [...acc, data.index] as any)
-
-                console.log([...selectedProducts, data.index])
+                const product = products.find((p, idx) => p.name == e.target.value) as any
+                seteSelProd((acc) => [...acc, product] as any)
+                setTotalPrice((val) => val + Number(product.price))
+                console.log([...selectedProducts, product])
               }}
             >
               {products.map((p) => (

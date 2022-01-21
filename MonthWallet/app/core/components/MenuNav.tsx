@@ -4,8 +4,11 @@ import { Login } from "app/auth/validations"
 import { Box, Button, Center, HStack, Spacer } from "@chakra-ui/react"
 import FullScreen from "./FullScreen"
 import { Router } from "blitz"
+import logout from "app/auth/mutations/logout"
 
 export const WindowWithMenu = (props) => {
+  const [logoutMut] = useMutation(logout)
+
   function onShowBacketsClick(e) {
     console.log("ShowAllBaskets !!!")
     Router.push(Routes.BasketsPage())
@@ -29,8 +32,9 @@ export const WindowWithMenu = (props) => {
     Router.push(Routes.NewProductPage())
   }
 
-  function onLogoutClick(e) {
-    console.log("Logout !!!")
+  async function onLogoutClick(e) {
+    await logoutMut()
+    Router.push(Routes.LoginPage())
   }
 
   function onShowHomePage(e) {

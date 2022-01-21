@@ -5,15 +5,18 @@ import WindowWithMenu from "app/core/components/MenuNav"
 import Stats from "app/core/models/Stats"
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, Center } from "@chakra-ui/react"
 import Product from "app/core/models/Product"
+import { RandomInt } from "../utils/base"
 
 type ProductTableProps = {
   data: Product[]
 }
 
 const ProductTable = (props: ProductTableProps) => {
+  console.log({ props })
+
   function generateRow(product: Product) {
     return (
-      <Tr>
+      <Tr key={RandomInt(0, 100_000_000)}>
         <Td>{product.name}</Td>
         <Td>{product.price} zł</Td>
       </Tr>

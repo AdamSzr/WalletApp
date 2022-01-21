@@ -21,7 +21,7 @@ export default resolver.pipe(resolver.zod(CreateBasket), resolver.authorize(), a
   const ObjToCreate = input.products.map((p) => ({ productId: p }))
 
   data.products = { create: ObjToCreate }
-  const basket = await db.basket.create({ data: input })
+  const basket = await db.basket.create({ data: data })
 
   return basket
 })

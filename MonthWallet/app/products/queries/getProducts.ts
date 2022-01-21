@@ -4,27 +4,9 @@ import db, { Prisma } from "db"
 interface GetProductsInput
   extends Pick<Prisma.ProductFindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
 
-export default resolver.pipe(
-  resolver.authorize(),
-  async ({ where, orderBy, skip = 0, take = 100 }: GetProductsInput) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    const {
-      items: products,
-      hasMore,
-      nextPage,
-      count,
-    } = await paginate({
-      skip,
-      take,
-      count: () => db.product.count({ where }),
-      query: (paginateArgs) => db.product.findMany({ ...paginateArgs, where, orderBy }),
-    })
+export default resolver.pipe(resolver.authorize(), async ({ where }: GetProductsInput) => {
+  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+  const x = await db.product.findMany({ where })
 
-    return {
-      products,
-      nextPage,
-      hasMore,
-      count,
-    }
-  }
-)
+  return x
+})

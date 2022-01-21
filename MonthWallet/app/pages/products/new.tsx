@@ -12,11 +12,16 @@ const NewProductPage: BlitzPage = () => {
 
   return (
     <WindowWithMenu>
-      <ProductForm />
+      <ProductForm
+        onSubmitCb={(product) => {
+          console.log({ product })
+        }}
+      />
     </WindowWithMenu>
   )
 }
 
 NewProductPage.getLayout = (page) => <Layout title={"Create New Product"}>{page}</Layout>
+NewProductPage.authenticate = true
 
 export default NewProductPage

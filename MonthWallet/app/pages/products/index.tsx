@@ -15,37 +15,28 @@ import WindowWithMenu from "app/core/components/MenuNav"
 import Product from "app/core/models/Product"
 import ProductTable from "app/core/components/ProductTable"
 import { Range } from "app/core/utils/base"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
-type ProductListProps = {
-  productList: Product[]
-}
-
-const ProductsList = (props: ProductListProps) => {
+const ProductsList = () => {
   const router = useRouter()
+  const user = useCurrentUser()
 
-  // const productList = useQuery(getProducts, { where: { userId: 1 } } as any)
-  // const productList = Product.create()
-  const products = Range(0, 10).map((i) => Product.create())
+  const [productList, status] = useQuery(getProducts, { where: { userId: user?.id } } as any)
 
-  const page = Number(router.query.page) || 0
-
-  return (
-    <div>
-      <ProductTable data={products} />
-    </div>
-  )
+  return <ProductTable data={productList as any} />
 }
 
 const ProductsPage: BlitzPage = () => {
   return (
     <WindowWithMenu>
       <Suspense fallback={<div>Loading...</div>}>
-        <ProductsList productList={undefined as any} />
+        <ProductsList />
       </Suspense>
     </WindowWithMenu>
   )
 }
 
 ProductsPage.getLayout = (page) => <Layout>{page}</Layout>
+ProductsPage.authenticate = true
 
 export default ProductsPage
