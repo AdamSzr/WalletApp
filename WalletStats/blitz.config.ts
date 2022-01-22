@@ -1,7 +1,12 @@
-import { BlitzConfig, sessionMiddleware, simpleRolesIsAuthorized } from "blitz"
+import { BlitzConfig, connectMiddleware, sessionMiddleware, simpleRolesIsAuthorized } from "blitz"
+import NextCors from "nextjs-cors"
+import { Middleware } from "blitz"
 
 const config: BlitzConfig = {
   middleware: [
+    () => {
+      console.log("1234")
+    },
     sessionMiddleware({
       cookiePrefix: "WalletStats",
       isAuthorized: simpleRolesIsAuthorized,

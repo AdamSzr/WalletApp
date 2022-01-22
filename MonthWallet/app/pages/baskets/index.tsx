@@ -13,7 +13,7 @@ export const BasketsList = () => {
   const user = useCurrentUser()
 
   function getBasketProductsList(basket: Basket) {
-    return basket.products.map((itemsInBasket) => itemsInBasket.product)
+    return basket.products.map((itemsInBasket) => (itemsInBasket as any).product)
   }
 
   function ParseQuery(rawData): Basket[] {
