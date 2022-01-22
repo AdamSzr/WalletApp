@@ -2,6 +2,7 @@ import { BlitzApiHandler, BlitzApiRequest, BlitzApiResponse, Middleware, useQuer
 import db from "db"
 
 const ping: Middleware = (req, res) => {
-  return res.status(200).json({ ping: "pong" })
+  res.status(200).json({ ping: "pong" })
+  res.end()
 }
 export default ping

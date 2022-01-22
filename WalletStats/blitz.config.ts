@@ -1,5 +1,4 @@
 import { BlitzConfig, connectMiddleware, sessionMiddleware, simpleRolesIsAuthorized } from "blitz"
-import NextCors from "nextjs-cors"
 import { Middleware } from "blitz"
 
 const config: BlitzConfig = {
