@@ -21,9 +21,6 @@ var __toModule = (module2) => {
 var import_blitz = __toModule(require("blitz"));
 var config = {
   middleware: [
-    () => {
-      console.log("1234");
-    },
     (0, import_blitz.sessionMiddleware)({
       cookiePrefix: "WalletStats",
       isAuthorized: import_blitz.simpleRolesIsAuthorized

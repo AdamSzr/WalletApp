@@ -4,9 +4,6 @@ import { Middleware } from "blitz"
 
 const config: BlitzConfig = {
   middleware: [
-    () => {
-      console.log("1234")
-    },
     sessionMiddleware({
       cookiePrefix: "WalletStats",
       isAuthorized: simpleRolesIsAuthorized,

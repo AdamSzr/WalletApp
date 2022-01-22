@@ -1,15 +1,27 @@
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import WindowWithMenu from "app/core/components/MenuNav"
 import Stats from "app/core/models/Stats"
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
+import { useCurrentUser } from "../hooks/useCurrentUser"
 
-type TableProp = {
-  data: Stats
-}
+const StatsTable = () => {
+  const [stats, setStats] = useState({} as Stats)
+  const user = useCurrentUser()
 
-const StatsTable = (props: TableProp) => {
+  // loadData()
+
+  // function loadData() {
+  //   const url = `http://localhost:3001/api/stats/` + user?.id
+
+  //   if (!stats) {
+  //     fetch(url)
+  //       .then((raw) => raw.json())
+  //       .then((obj) => setStats(() => obj))
+  //   }
+  // }
+
   function generateRow(left, right) {
     return (
       <Tr>
@@ -32,24 +44,31 @@ const StatsTable = (props: TableProp) => {
   return (
     <Table>
       <Tbody>
-        {generateRow(
-          "Najczęściej kupowany produkt",
-          `ProduktId - ${props.data.mostPopular.productId}`
-        )}
-        {generateRow("Średnio wydano na dzień", `${props.data.avgPerDay} zł`)}
-        {generateRow("Łączna ilość zakupionych produktów", `${props.data.prodCount} szt`)}
-        {generateRow("Najdroższy koszyk", `BasketId ${props.data.mostExpensiveBasketId}`)}
-        {generateRow(
-          "W ostatnim miesiącu utworzono",
-          `${props.data.lastMonthBasketCount} koszyków`
-        )}
-        {generateRow("Średnia kwota wydana na koszyk", `${props.data.avgPerBasket} zł`)}
-        {generateRow("Najtańsze zakupy", `${props.data.cheapestBasketId}`)}
-        {generateRow("Najdroższy produkt", `ProduktId - ${props.data.mostExpensiveProdId}`)}
-        {generateRow("Najtańszy produkt", `ProduktId - ${props.data.cheapestProdId}`)}
+        {generateRow("Najczęściej kupowany produkt", `ProduktId - ${stats.mostPopular.productId}`)}
+        {generateRow("Średnio wydano na dzień", `${stats.avgPerDay} zł`)}
+        {generateRow("Łączna ilość zakupionych produktów", `${stats.prodCount} szt`)}
+        {generateRow("Najdroższy koszyk", `BasketId ${stats.mostExpensiveBasketId}`)}
+        {generateRow("W ostatnim miesiącu utworzono", `${stats.lastMonthBasketCount} koszyków`)}
+        {generateRow("Średnia kwota wydana na koszyk", `${stats.avgPerBasket} zł`)}
+        {generateRow("Najtańsze zakupy", `${stats.cheapestBasketId}`)}
+        {generateRow("Najdroższy produkt", `ProduktId - ${stats.mostExpensiveProdId}`)}
+        {generateRow("Najtańszy produkt", `ProduktId - ${stats.cheapestProdId}`)}
       </Tbody>
     </Table>
   )
 }
+
+// export async function getStaticProps() {
+//   const stats = {}
+//   const url = `http://localhost:3001/api/stats/` + user?.id
+
+//   if (!stats) {
+//     fetch(url)
+//       .then((raw) => raw.json())
+//       .then((obj) => setStats(() => obj))
+//   }
+
+//   return { props: { stats } }
+// }
 
 export default StatsTable
