@@ -6,10 +6,14 @@ import Stats from "app/core/models/Stats"
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 
-const StatsTable = () => {
-  const [stats, setStats] = useState({} as Stats)
-  const user = useCurrentUser()
+type StatsTableProps = {
+  stats: Stats
+}
 
+const StatsTable = (props: StatsTableProps) => {
+  const [stats, setStats] = useState(props.stats as Stats)
+  const user = useCurrentUser()
+  // console.log(stats)
   // loadData()
 
   // function loadData() {
