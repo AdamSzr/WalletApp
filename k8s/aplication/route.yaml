@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ex1-deploy
+  name: projekt
+spec:
+  host: ""
+  port:
+    targetPort: 8081
+  to:
+    kind: Service
+    name: ex1-svc
+    weight: 100
