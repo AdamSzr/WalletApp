@@ -9,7 +9,10 @@ const UserId = z.object({
 })
 
 export default async function getStats(userId: z.infer<typeof UserId>, ctx: Ctx) {
-  const url = `http://localhost:3001/api/stats/` + userId
+  if (process.env.SERVICE == undefined)
+    throw new Error("Uzyj zmiennej srodowiskowej SERVICE aby wykonać fetch")
+
+  const url = process.env.SERVICE || "" + userId
 
   let stats = (await fetch(url).then((raw) => raw.json())) as Stats
 
