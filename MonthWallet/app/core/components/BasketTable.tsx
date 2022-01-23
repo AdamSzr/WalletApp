@@ -13,6 +13,7 @@ type BasketTableProps = {
 }
 
 const BasketTable = (props: BasketTableProps) => {
+  console.log(props)
   function generateRow(basket: Basket) {
     return (
       <Tr key={RandomInt(0, 100_000_000)}>

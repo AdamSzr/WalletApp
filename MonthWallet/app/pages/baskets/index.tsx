@@ -11,7 +11,7 @@ import Product from "app/core/models/Product"
 
 export const BasketsList = () => {
   const user = useCurrentUser()
-
+  console.log(user)
   function getBasketProductsList(basket: Basket) {
     return basket.products.map((itemsInBasket) => (itemsInBasket as any).product)
   }
@@ -28,7 +28,7 @@ export const BasketsList = () => {
   }
 
   const [baskets, status] = useQuery(getBaskets, { where: { userId: user?.id } } as any)
-
+  console.log({ where: { userId: user?.id } })
   return <BasketTable data={ParseQuery(baskets)} />
 }
 

@@ -33,7 +33,7 @@ export default class StatsCalc {
     // cheapestBasketId: number
     // mostExpensiveProdId: number
     // cheapestProdId: number
-
+    console.log(result)
     return result
   }
 
@@ -54,7 +54,7 @@ export default class StatsCalc {
   }
 
   private lastMonthBasketCount() {
-    return this.rand()
+    return this.data.length
   }
 
   private mostExpensiveBasketId() {
@@ -62,7 +62,10 @@ export default class StatsCalc {
   }
 
   private prodCount() {
-    return this.rand()
+    const d = this.data.map((item) => item.totalPrice)
+    let sum = 0
+    d.forEach((i) => (sum = sum + i))
+    return sum
   }
 
   private avgPerDay() {
