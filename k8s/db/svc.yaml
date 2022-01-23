@@ -1,12 +1,22 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: <nazwa_serwisu>
+  name: db-svc
 spec:
   ports:
-  - port: <port_serwisu>
-    protocol: TCP
-    targetPort: <port poda>
+  - port: 5432
   selector:
-    app: <label przypisany do podów które mają być objęte działaniem>
-  type: <typ>
+    app: wallet-db
+  type: ClusterIP
+
+
+# kubectl expose <typ_obiektu> <nazwa_obiektu> [--port=<svc_port>] [--target-port=<app_port>] [--name=<nazwa_svc>] --type=ClusterIP
+
+#  <typ_obiektu> - to rodzaj obiektu, który chcemy udostępnić. Może to być np. 
+# "pod", "deployment"
+# • <nazwa_obiektu> - nazwa obiektu, który chcemy udostępnić
+# • <app_port> - port, na którym aplikacja udostępnia swoje funkcje w podzie. 
+# Jeśli flagę pominiemy, to platforma podstawi tu port, który wskazaliśmy 
+# tworząc dany deployment lub pod.
+# • <svc_port> - port, na którym tworzony serwis ma oczekiwać na połączenia
+# • <nazwa_svc> - nazwa, pod jaką serwis będzie widoczny w systemie

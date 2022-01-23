@@ -4,34 +4,42 @@ metadata:
   creationTimestamp: null
   labels:
     app: projekt-db
-  name: wallet-app-db
+  name: deploy-db
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: busybox
+      app: wallet-db
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: busybox
+        app: wallet-db
     spec:
       containers:
       - command:
-        - sleep
-        - "9000"
-        image: image-registry.openshift-image-registry.svc:5000/default/busybox:latest
-        name: busybox
+        image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/postgres-wallet:1.0
+        name: wallet-db
         resources: {}
-        envFrom:
-        - configMapRef:
-            name: ex1
+        ports:
+        - containerPort: 5431
+        env:
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: UNAME
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: PASSWD
         volumeMounts:
-        - mountPath: /app/files
-          name: ex1-volume
+        - mountPath: /data
+          name: db-volume
       volumes:
-      - name: ex1-volume
+      - name: db-volume
         persistentVolumeClaim:
-          claimName: ex1-pvc
+          claimName: postgres-pv-volume
 status: {}
