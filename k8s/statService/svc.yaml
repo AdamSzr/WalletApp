@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: <nazwa_serwisu>
+  name: servicecfm
 spec:
   ports:
-  - port: <port_serwisu>
+  - port: 3001 
     protocol: TCP
-    targetPort: <port poda>
+    targetPort: 8081
   selector:
-    app: <label przypisany do podów które mają być objęte działaniem>
-  type: <typ>
+    app: serviceapp
+  type: ClusterIP

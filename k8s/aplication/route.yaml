@@ -3,13 +3,13 @@ kind: Route
 metadata:
   creationTimestamp: null
   labels:
-    app: ex1-deploy
+    app: projektapp
   name: projekt
 spec:
   host: ""
   port:
-    targetPort: 8081
+    targetPort: 8080
   to:
     kind: Service
-    name: ex1-svc
+    name: projektappsvc
     weight: 100

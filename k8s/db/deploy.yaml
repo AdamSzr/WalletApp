@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: projekt-db
+    app: projekt
   name: deploy-db
 spec:
   replicas: 1
@@ -41,5 +41,5 @@ spec:
       volumes:
       - name: db-volume
         persistentVolumeClaim:
-          claimName: postgres-pv-volume
+          claimName: postgres-pvc
 status: {}

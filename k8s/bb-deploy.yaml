@@ -2,29 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
-  name: servicedeploy
+  name: bb-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: serviceapp
+      app: busybox
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: serviceapp
+        app: busybox
     spec:
       containers:
       - command:
         - sleep
         - "9000"
         image: image-registry.openshift-image-registry.svc:5000/default/busybox:latest
-        ports:
-        - containerPort: 8081
-        name: serviceapp
+        name: busybox
         resources: {}
-        envFrom:
-        - configMapRef:
-            name: walletmap
 status: {}
+
+

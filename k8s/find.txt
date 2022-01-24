@@ -1,4 +1,4 @@
 lab 7  -> deployment
 lab 8  -> config map | secret
-lab 9  -> svc
+lab 9  -> svc | route
 lab 10 -> PersistentVolumeClaim

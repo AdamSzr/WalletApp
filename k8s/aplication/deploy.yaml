@@ -3,35 +3,35 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: ex1-bb
-  name: ex1-bb
+    app: projektapp
+  name: projektapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: busybox
+      app: projektapp
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: busybox
+        app: projektapp
     spec:
       containers:
       - command:
-        - sleep
-        - "9000"
-        image: image-registry.openshift-image-registry.svc:5000/default/busybox:latest
-        name: busybox
+        image: :TODO
+        name: projektapp
         resources: {}
         envFrom:
         - configMapRef:
-            name: ex1
-        volumeMounts:
-        - mountPath: /app/files
-          name: ex1-volume
-      volumes:
-      - name: ex1-volume
-        persistentVolumeClaim:
-          claimName: ex1-pvc
+            name: walletmap
+
+      #   volumeMounts:
+      #   - mountPath: /app/files
+      #     name: ex1-volume
+      # volumes:
+      # - name: ex1-volume
+      #   persistentVolumeClaim:
+      #     claimName: ex1-pvc
+      
 status: {}

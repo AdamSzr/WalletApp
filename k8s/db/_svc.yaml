@@ -10,6 +10,18 @@ spec:
   type: ClusterIP
 
 
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: db-svc
+# spec:
+#   type: NodePort
+#   ports:
+#   - port: 5432
+#   selector:
+#    app: wallet-db
+
+
 # kubectl expose <typ_obiektu> <nazwa_obiektu> [--port=<svc_port>] [--target-port=<app_port>] [--name=<nazwa_svc>] --type=ClusterIP
 
 #  <typ_obiektu> - to rodzaj obiektu, który chcemy udostępnić. Może to być np. 
