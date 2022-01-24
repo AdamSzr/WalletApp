@@ -4,9 +4,10 @@ metadata:
   name: postgres-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
+  storageClassName: managed-nfs-storage
   volumeMode: Filesystem
   resources:
     requests:
       storage: 1Gi
-  storageClassName: managed-nfs-storage
+

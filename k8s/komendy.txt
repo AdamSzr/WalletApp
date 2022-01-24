@@ -6,10 +6,9 @@ docker push default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/la
 docker push default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/postgres-wallet:1.0
 
 
-
-
-
-
-
 udostępniamy frontend za pomocą expose svc.
 
+
+
+docker images
+docker tag postgres:14.1 default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/postgres-wallet:1.0
