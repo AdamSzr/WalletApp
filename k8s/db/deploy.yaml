@@ -24,17 +24,9 @@ spec:
         resources: {}
         ports:
         - containerPort: 5432
-        env:
-        - name: USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: UNAME
-        - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: PASSWD
+        envFrom:
+        - configMapRef:
+          name: postgres-config
         volumeMounts:
         - mountPath: /data
           name: db-volume
