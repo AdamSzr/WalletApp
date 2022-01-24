@@ -29,12 +29,12 @@ spec:
           valueFrom:
             secretKeyRef:
               name: db-secret
-              key: USER_DB
+              key: UNAME
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: db-secret
-              key: PASSWORD_DB
+              key: PASSWD
         volumeMounts:
         - mountPath: /data
           name: db-volume
