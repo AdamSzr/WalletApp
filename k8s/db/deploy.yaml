@@ -23,7 +23,7 @@ spec:
         name: wallet-db
         resources: {}
         ports:
-        - containerPort: 5431
+        - containerPort: 5432
         env:
         - name: USERNAME
           valueFrom:
