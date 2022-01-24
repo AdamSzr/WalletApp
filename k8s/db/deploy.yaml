@@ -18,8 +18,7 @@ spec:
         app: wallet-db
     spec:
       containers:
-      - command:
-        image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/postgres-wallet:1.0
+      - image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/postgres-wallet:1.0
         name: wallet-db
         resources: {}
         ports:
