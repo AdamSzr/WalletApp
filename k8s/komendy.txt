@@ -33,5 +33,8 @@ db-svc.labproj23.svc.cluster.local:5432
 
 kubectl exec -it bb-deploy -- sh
 
+kkubectl exec -it deploy-db-c896fbdcb-t9btd -- psql -U postgres -d MonthWallet
 
 
+
+oc expose svc projektappsvc --name projekt
