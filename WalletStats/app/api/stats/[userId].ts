@@ -13,7 +13,7 @@ const cors = Cors({
 // Helper method to wait for a middleware to execute before continuing
 // And to throw an error when an error happens in a middleware
 function runMiddleware(req, res, fn) {
-  console.log("inside runMIDDLEWARE")
+  // console.log("inside runMIDDLEWARE")
   return new Promise((resolve, reject) => {
     fn(req, res, (result) => {
       if (result instanceof Error) {
@@ -62,7 +62,7 @@ const handler: Middleware = async (req, res) => {
   })
 
   const data = ParseQuery(result)
-  console.log(JSON.stringify(data, null, 2))
+  // console.log(JSON.stringify(data, null, 2))
 
   res.status(200).json(new StatsCalc(data).Calc())
 }
