@@ -19,7 +19,7 @@ spec:
       - command:
         - sleep
         - "9000"
-        image: image-registry.openshift-image-registry.svc:5000/default/busybox:latest
+        image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/walletservice
         ports:
         - containerPort: 8081
         name: serviceapp
