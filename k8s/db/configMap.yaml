@@ -9,5 +9,3 @@ metadata:
   name: db-cfm
 data:
   POSTGRES_DB: MonthWallet
-  POSTGRES_USER: admin
-  POSTGRES_PASSWORD: admin
