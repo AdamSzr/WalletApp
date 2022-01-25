@@ -38,3 +38,4 @@ kkubectl exec -it deploy-db-c896fbdcb-t9btd -- psql -U postgres -d MonthWallet
 
 
 oc expose svc projektappsvc --name projekt
+projekt-costam/apps.ocp.lab.cloudpak.site/labproj23/
