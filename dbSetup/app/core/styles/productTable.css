@@ -1,8 +1,0 @@
-#ProductTable {
-  width: max-content;
-  border: 1px solid black;
-}
-
-#ProductTable > thead {
-  background-color: rgb(127, 176, 184);
-}
