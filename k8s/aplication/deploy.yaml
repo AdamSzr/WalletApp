@@ -54,7 +54,7 @@ kind: Service
 metadata:
   name: projektappsvc
   labels:
-    app: projektappsvc
+    app: projektapp
 spec:
   ports:
   - port: 3000
@@ -64,3 +64,23 @@ spec:
     app: projektapp
   type: ClusterIP
 
+---
+
+#### ROUTE ###
+
+
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app: projektapp
+  name: apprte
+spec:
+  host: ""
+  port:
+    targetPort: 80
+  to:
+    kind: Service
+    name: projektappsvc
+    weight: 100
