@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: www3
+spec:
+  containers:
+  - image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/nginx:latest
+    name: www3
+    ports:
+    - containerPort: 80
