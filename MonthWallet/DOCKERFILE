@@ -10,3 +10,4 @@ RUN npx blitz prisma migrate deploy
 RUN npx blitz build
 
 CMD npx blitz start 
+
