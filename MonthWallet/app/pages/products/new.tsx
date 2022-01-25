@@ -21,7 +21,7 @@ const NewProductPage: BlitzPage = () => {
   )
 }
 
-NewProductPage.getLayout = (page) => <Layout title={"Create New Product"}>{page}</Layout>
 NewProductPage.authenticate = true
+NewProductPage.getLayout = (page) => <Layout title={"Create New Product"}>{page}</Layout>
 
 export default NewProductPage

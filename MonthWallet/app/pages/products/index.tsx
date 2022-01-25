@@ -36,7 +36,9 @@ const ProductsPage: BlitzPage = () => {
   )
 }
 
-ProductsPage.getLayout = (page) => <Layout>{page}</Layout>
+
 ProductsPage.authenticate = true
+ProductsPage.getLayout = (page) => <Layout>{page}</Layout>
+
 
 export default ProductsPage

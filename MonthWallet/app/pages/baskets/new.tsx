@@ -34,7 +34,8 @@ const NewBasketPage: BlitzPage = () => {
   )
 }
 
-NewBasketPage.getLayout = (page) => <Layout title={"Create New Basket"}>{page}</Layout>
+
 NewBasketPage.authenticate = true
+NewBasketPage.getLayout = (page) => <Layout title={"Create New Basket"}>{page}</Layout>
 
 export default NewBasketPage

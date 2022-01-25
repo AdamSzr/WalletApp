@@ -40,6 +40,7 @@ const BasketsPage: BlitzPage = () => {
   )
 }
 
-BasketsPage.getLayout = (page) => <Layout>{page}</Layout>
 BasketsPage.authenticate = true
+BasketsPage.getLayout = (page) => <Layout>{page}</Layout>
+
 export default BasketsPage
