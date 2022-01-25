@@ -1,10 +1,19 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: www3
+  name: setup
 spec:
   containers:
-  - image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/default/nginx:latest
-    name: www3
+  - image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/dbsetup:1.0
+    name: setupdb
     ports:
-    - containerPort: 80
+    - containerPort: 3000
+
+
+# docker tag dbsetup:1.0 default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/dbsetup:1.0
+
+# docker push default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/dbsetup:1.0
+
+# kubectl apply -f webserver.yaml
+
+ 
