@@ -8,7 +8,7 @@ kind: ConfigMap
 metadata:
   name: walletmap
 data:
-  DATABASE_URL: postgresql://postgres@db-svc.labproj23.svc.cluster.local:5432/MonthWallet
+  DATABASE_URL: postgresql://postgres@dbsvc.labproj23.svc.cluster.local:5432/MonthWallet
   SESSION_SECRET_KEY: 96e111f6e3cba454c8615eafc5650205
 ---
 
