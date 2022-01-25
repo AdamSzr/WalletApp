@@ -35,14 +35,14 @@ spec:
     spec:
       containers:
       - command:
-        image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/walletapp:1.0
+        image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/walletapp:2.0
         name: projektapp
         resources: {}
         ports:
         - containerPort: 3000
         envFrom:
         - configMapRef:
-            name: walletmap      
+            name: walletmap
 status: {}
 
 ---
