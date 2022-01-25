@@ -2,46 +2,46 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: deploy-db
-  name: deploy-db
+    app: deploydb
+  name: deploydb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: deploy-db
+      app: deploydb
   strategy: {}
   template:
     metadata:
       labels:
-        app: deploy-db
+        app: deploydb
     spec:
       containers:
-      - name: deploy-db
+      - name: deploydb
         image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/postgres-wallet:1.0
         resources: {}
         ports:
         - containerPort: 5432
         envFrom:
         - configMapRef:
-            name: db-cfm
+            name: dbcm
         env:
-        - name: USER_DB
+        - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
-              name: db-secret
-              key: UNAME
+              name: dbsecret
+              key: POSTGRES_USER
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: db-secret
-              key: PASSWD
+              name: dbsecret
+              key: POSTGRES_PASSWORD
         volumeMounts:
         - mountPath: /data
-          name: db-volume
+          name: dbvolume
       volumes:
-      - name: db-volume
+      - name: dbvolume
         persistentVolumeClaim:
-          claimName: postgres-pvc
+          claimName: postgrespvc
 status: {}
 
 
