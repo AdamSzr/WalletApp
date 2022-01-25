@@ -1,23 +1,69 @@
+
+#### CONFIG_MAP ###
+
+apiVersion: v1
+data:
+  POSTGRES_DB: MonthWallet
+kind: ConfigMap
+metadata:
+  name: dbcm
+  namespace: labproj23
+
+---
+
+#### SECRET ###
+
+apiVersion: v1
+data:
+  POSTGRES_PASSWORD: YWRtaW4=
+  POSTGRES_USER: cG9zdGdyZXM=
+kind: Secret
+metadata:
+  name: dbsecret
+  namespace: labproj23
+type: Opaque
+
+---
+
+#### PVC ###
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dbpvc
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: managed-nfs-storage
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+#### DEPLOYMENT ###
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: deploydb
-  name: deploydb
+    app: dbdeployment
+  name: dbdeployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: deploydb
+      app: dbdeployment
   strategy: {}
   template:
     metadata:
       labels:
-        app: deploydb
+        app: dbdeployment
     spec:
       containers:
-      - name: deploydb
-        image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/postgres-wallet:1.0
+      - name: dbdeployment
+        image: image-registry.openshift-image-registry.svc:5000/labproj23/postgres-wallet:1.0
         resources: {}
         ports:
         - containerPort: 5432
@@ -41,52 +87,22 @@ spec:
       volumes:
       - name: dbvolume
         persistentVolumeClaim:
-          claimName: postgrespvc
+          claimName: dbpvc
 status: {}
 
+---
 
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   labels:
-#     app: db-deploy
-#   name: db-deploy
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: db-deploy
-#   strategy: {}
-#   template:
-#     metadata:
-#       labels:
-#         app: db-deploy
-#     spec:
-#       containers:
-#       - name: db-deploy
-#         image: image-registry.openshift-image-registry.svc:5000/labproj22/postgres:14.1
-#         resources: {}
-#         ports:
-#         - containerPort: 5432
-#         envFrom:
-#         - configMapRef:
-#             name: db-cmap
-#         env:
-#         - name: USER_DB
-#           valueFrom:
-#             secretKeyRef:
-#               name: db-secret
-#               key: USER_DB
-#         - name: POSTGRES_PASSWORD
-#           valueFrom:
-#             secretKeyRef:
-#               name: db-secret
-#               key: PASSWORD_DB
-#         volumeMounts:
-#         - mountPath: /data
-#           name: postgredb
-#       volumes:
-#       - name: postgredb
-#         persistentVolumeClaim:
-#           claimName: db-pvc
-# status: {}
+#### SERVICE ###
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dbsvc
+  labels:
+    app: dbdeployment
+spec:
+  ports:
+  - port: 5432
+  selector:
+    app: dbdeployment
+  type: NodePort
