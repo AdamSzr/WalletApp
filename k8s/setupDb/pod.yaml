@@ -10,8 +10,8 @@ spec:
     ports:
     - containerPort: 3000
     envFrom:
-    - configMapRef:
-      name: walletmap
+      - configMapRef:
+        name: walletmap
 
 
 # docker tag dbsetup:1.0 default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/dbsetup:1.0
