@@ -1,0 +1,21 @@
+# DATABASE_URL = ""
+# DATABASE_URL=postgresql://postgres:admin@localhost:5433/MonthWallet
+# STAT_SERVICE_URL = localhost:3001/api/stats
+
+
+apiVersion: v1
+data:
+  POSTGRES_DB: MonthWallet
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2022-01-25T12:53:49Z"
+  name: dbcm
+  namespace: labproj23
+  resourceVersion: "79621046"
+  uid: d2c02cd0-e96a-47fd-8323-a6b9dead78f5
+
+
+kubectl create configmap dbcm --from-literal=POSTGRES_DB=MonthWallet  -o yaml
+
+
+
