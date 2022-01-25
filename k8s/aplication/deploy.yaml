@@ -1,3 +1,19 @@
+
+---
+
+#### CONFIGMAP ###
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: walletmap
+data:
+  DATABASE_URL: postgresql://postgres@db-svc.labproj23.svc.cluster.local:5432/MonthWallet
+ 
+---
+
+#### DEPLOYMENT ###
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,14 +42,25 @@ spec:
         - containerPort: 3000
         envFrom:
         - configMapRef:
-            name: walletmap
-
-      #   volumeMounts:
-      #   - mountPath: /app/files
-      #     name: ex1-volume
-      # volumes:
-      # - name: ex1-volume
-      #   persistentVolumeClaim:
-      #     claimName: ex1-pvc
-      
+            name: walletmap      
 status: {}
+
+---
+
+#### SERVICE ###
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: projektappsvc
+  labels:
+    app: projektappsvc
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: projektapp
+  type: ClusterIP
+
