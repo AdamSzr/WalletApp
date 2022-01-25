@@ -5,6 +5,5 @@ COPY . .
 
 RUN npm install
 RUN pwd
-RUN npx blitz prisma migrate deploy
-
+RUN npx blitz prisma generate deploy
 RUN echo DONE
