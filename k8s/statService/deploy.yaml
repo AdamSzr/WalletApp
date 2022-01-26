@@ -16,6 +16,7 @@ spec:
         app: serviceapp
     spec:
       containers:
+      - command:
         image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/walletservice:1.0
         ports:
         - containerPort: 3000
