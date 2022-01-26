@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
-  name: deploy-service
+  name: projektservice
 spec:
   replicas: 1
   selector:
@@ -16,15 +16,48 @@ spec:
         app: serviceapp
     spec:
       containers:
-      - command:
-        - sleep
-        - "9000"
         image: default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/walletservice:1.0
         ports:
-        - containerPort: 8081
+        - containerPort: 3000
         name: serviceapp
         resources: {}
         envFrom:
         - configMapRef:
             name: walletmap
 status: {}
+
+---
+
+#### SERVICE ###
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: svcapistats
+spec:
+  ports:
+  - port: 3000 
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: serviceapp
+  type: ClusterIP
+
+  
+---
+
+#### ROUTE ###
+
+
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: apirte
+spec:
+  host: ""
+  port:
+    targetPort: 3000
+  to:
+    kind: Service
+    name: svcapistats
+    weight: 100

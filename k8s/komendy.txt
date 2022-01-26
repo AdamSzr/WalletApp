@@ -24,9 +24,9 @@ docker push default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/la
 
 
 
-docker tag walletapp:2.0 default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/walletapp:2.0
+docker tag walletapp:3.0 default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/walletapp:3.0
 
-docker push default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/walletapp:2.0
+docker push default-route-openshift-image-registry.apps.ocp.lab.cloudpak.site/labproj23/walletapp:3.0
 
 
 db-svc.labproj23.svc.cluster.local:5432

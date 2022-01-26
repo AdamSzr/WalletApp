@@ -4,9 +4,9 @@ metadata:
   name: svc-statserv
 spec:
   ports:
-  - port: 3001 
+  - port: 3000 
     protocol: TCP
-    targetPort: 8081
+    targetPort: 3000
   selector:
     app: serviceapp
   type: ClusterIP
