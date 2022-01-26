@@ -90,7 +90,7 @@ export default class StatsCalc {
     let max = 0
     let idx = Infinity
     // console.log(arr)
-    arr.forEach((element,index) => {
+    arr.forEach((element, index) => {
       // console.log(element)
       if (max < element) {
         max = element
@@ -130,9 +130,10 @@ export default class StatsCalc {
   }
 
   Calc(): Stats {
+    if (this.data.length == 0) return Stats.default()
+
     const result = new Stats()
     result.mostPopular = this.MostPopular()
-
     result.avgPerDay = this.avgPerDay()
     result.prodCount = this.prodCount()
     result.mostExpensiveBasketId = this.mostExpensiveBasketId()

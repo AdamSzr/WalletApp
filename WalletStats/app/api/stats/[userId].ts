@@ -61,6 +61,7 @@ const handler: Middleware = async (req, res) => {
     include: { products: { include: { product: true } } },
   })
 
+
   const data = ParseQuery(result)
   // console.log(JSON.stringify(data, null, 2))
 
